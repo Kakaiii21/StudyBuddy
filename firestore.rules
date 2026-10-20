@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // ─── for duplicate email checking in ChangeEmail ─────────────────
+    match /emails/{email} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // ─── queue tickets — any signed-in user can read (needed for position
+    // counting across other users' tickets); writes are backend-only via
+    // the Admin SDK, which bypasses these rules entirely.
+    match /queueTickets/{ticketId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}

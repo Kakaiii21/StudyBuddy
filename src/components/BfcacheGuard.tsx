@@ -1,0 +1,18 @@
+// components/BfcacheGuard.tsx
+import { useEffect } from 'react'
+
+function BfcacheGuard() {
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        window.location.reload()
+      }
+    }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
+  }, [])
+
+  return null
+}
+
+export default BfcacheGuard

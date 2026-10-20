@@ -1,0 +1,30 @@
+# Secrets - never commit these
+.env
+.env.*
+!.env.example
+*serviceAccount*.json
+*service-account*.json
+*firebase-adminsdk*.json
+*.pem
+*.key
+
+# Compiled JavaScript files
+lib/**/*.js
+lib/**/*.js.map
+
+# TypeScript v1 declaration files
+typings/
+
+# Node.js dependency directory
+node_modules/
+
+# Local config overrides
+*.local
+
+# Build output
+dist/
+build/
+
+# Logs and OS files
+*.log
+.DS_Store
