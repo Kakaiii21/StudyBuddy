@@ -13,7 +13,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 
-const FUNCTIONS_BASE = 'https://us-central1-study-buddy-cbaa8.cloudfunctions.net'
+const FUNCTIONS_BASE = import.meta.env.VITE_API_BASE_URL as string
 const SEND_PASSWORD_RESET_URL = 'https://sendpasswordreset-ghr3m2mkda-uc.a.run.app'
 
 export const googleLogin = async () => {

@@ -220,7 +220,7 @@ useEffect(() => {
       }
 
       if (oldPublicId) {
-        await fetch('https://us-central1-study-buddy-cbaa8.cloudfunctions.net/deleteCloudinaryAsset', {
+        await fetch('https://studybuddyph.site/deleteCloudinaryAsset', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ publicId: oldPublicId, resourceType: 'image' }),
@@ -259,7 +259,7 @@ const handleRemoveProfilePic = async () => {
     }
 
     if (oldPublicId) {
-      await fetch('https://us-central1-study-buddy-cbaa8.cloudfunctions.net/deleteCloudinaryAsset', {
+      await fetch('https://studybuddyph.site/deleteCloudinaryAsset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ publicId: oldPublicId, resourceType: 'image' }),
