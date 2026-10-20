@@ -15,7 +15,7 @@ async function deleteFromCloudinary(publicId: string, fileType?: string): Promis
 
   console.log('[DELETE ATTEMPT] publicId:', publicId, '| resourceType:', resourceType)
 
-  const res = await fetch('https://api.studybuddyph.site/deleteCloudinaryAsset', {
+  const res = await fetch('https://studybuddyph.site/deleteCloudinaryAsset', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ publicId, resourceType }),
