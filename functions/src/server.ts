@@ -1,4 +1,5 @@
 // IMPORTANT: config and firebase must load first (env vars + admin init).
+import path from 'path'
 import { config } from './config'
 import './firebase'
 import express, { type Request, type Response, type NextFunction } from 'express'
@@ -88,6 +89,16 @@ app.post('/internal/dispatch', ...cronRoute('dispatch', runDispatch))
 app.post('/internal/check-deadlines', ...cronRoute('check-deadlines', runCheckTaskDeadlines))
 app.post('/internal/warn-deletions', ...cronRoute('warn-deletions', runWarnPendingDeletions))
 app.post('/internal/cleanup', ...cronRoute('cleanup', runCleanupDeactivatedAccounts))
+
+// ── Serve the built frontend ─────────────────────────────────────────────
+const webDir = path.join(__dirname, 'web')
+app.use(express.static(webDir))
+
+// SPA fallback: any other GET returns index.html (client-side routing)
+app.use((req, res, next) => {
+  if (req.method !== 'GET') return next()
+  res.sendFile(path.join(webDir, 'index.html'))
+})
 
 // ── 404 + error handling ─────────────────────────────────────────────────
 app.use((_req, res) => {
