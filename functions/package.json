@@ -21,11 +21,15 @@
     "officeparser": "^7.0.3",
     "resend": "^6.18.0"
   },
+  
   "devDependencies": {
     "@types/busboy": "^1.5.4",
     "@types/express": "^4.17.21",
     "@types/node": "^24.0.0",
     "typescript": "^6.0.0"
   },
+  "overrides": {
+  "websocket-driver": "^0.7.5"
+},
   "private": true
 }
